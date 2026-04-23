@@ -13,10 +13,11 @@ export default function Sidebar() {
     { section: 'Payment Gateways' },
     { label: 'Stripe', href: '/stripe', icon: '💳' },
     { label: 'Razorpay', href: '/razorpay', icon: '🏦' },
-    { section: 'Management' },
-    { label: 'Payments', href: '/payments', icon: '💰' },
+    { section: 'Billing & Pricing' },
     { label: 'Subscriptions', href: '/subscriptions', icon: '🔄' },
+    { label: 'Payments', href: '/payments', icon: '💰' },
     { label: 'Invoices', href: '/invoices', icon: '📄' },
+    { label: 'Pricing Plans', href: '/pricing', icon: '🏷️' },
   ];
 
   return (

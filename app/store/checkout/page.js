@@ -61,33 +61,6 @@ export default function CheckoutPage() {
           order_id: data.razorpayOrderId,
           prefill: { name: contact.name, email: contact.email, contact: contact.phone },
           theme: { color: '#6366f1' },
-          config: {
-            display: {
-              blocks: {
-                upi: {
-                  name: 'Pay using UPI',
-                  instruments: [
-                    { method: 'upi' },
-                    { method: 'upi', app: 'google_pay' },
-                    { method: 'upi', app: 'phonepe' },
-                    { method: 'upi', app: 'paytm' }
-                  ]
-                },
-                other: {
-                  name: 'Other Payment Modes',
-                  instruments: [
-                    { method: 'card' },
-                    { method: 'netbanking' },
-                    { method: 'wallet' }
-                  ]
-                }
-              },
-              sequence: ['block.upi', 'block.other'],
-              preferences: {
-                show_default_blocks: false
-              }
-            }
-          },
           handler: async function (response) {
             // Verify payment on server
             const verifyRes = await fetch('/api/store/verify', {

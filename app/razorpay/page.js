@@ -80,6 +80,7 @@ export default function RazorpayPage() {
     currency: 'INR',
     name: '',
     email: '',
+    method: 'upi',
   });
   const [paymentStatus, setPaymentStatus] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -214,25 +215,44 @@ export default function RazorpayPage() {
                 </select>
               </div>
             </div>
-            <div className="form-group">
-              <label className="form-label">Customer Name</label>
-              <input
-                type="text"
-                className="form-input"
-                placeholder="Rahul Sharma"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              />
+            <div className="form-row">
+              <div className="form-group">
+                <label className="form-label">Customer Name</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="Rahul Sharma"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Email</label>
+                <input
+                  type="email"
+                  className="form-input"
+                  placeholder="rahul@example.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                />
+              </div>
             </div>
             <div className="form-group">
-              <label className="form-label">Email</label>
-              <input
-                type="email"
-                className="form-input"
-                placeholder="rahul@example.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              />
+              <label className="form-label">Payment Method</label>
+              <div style={{ display: 'flex', gap: 12 }}>
+                <label style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '10px', border: '1px solid var(--border-primary)', borderRadius: 'var(--radius-md)', cursor: 'pointer', background: formData.method === 'upi' ? 'rgba(0, 112, 243, 0.1)' : 'transparent', borderColor: formData.method === 'upi' ? '#38bdf8' : 'var(--border-primary)' }}>
+                  <input type="radio" name="method" value="upi" checked={formData.method === 'upi'} onChange={(e) => setFormData({ ...formData, method: e.target.value })} style={{ marginRight: 8 }} />
+                  📱 UPI
+                </label>
+                <label style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '10px', border: '1px solid var(--border-primary)', borderRadius: 'var(--radius-md)', cursor: 'pointer', background: formData.method === 'card' ? 'rgba(0, 112, 243, 0.1)' : 'transparent', borderColor: formData.method === 'card' ? '#38bdf8' : 'var(--border-primary)' }}>
+                  <input type="radio" name="method" value="card" checked={formData.method === 'card'} onChange={(e) => setFormData({ ...formData, method: e.target.value })} style={{ marginRight: 8 }} />
+                  💳 Card
+                </label>
+                <label style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '10px', border: '1px solid var(--border-primary)', borderRadius: 'var(--radius-md)', cursor: 'pointer', background: formData.method === 'netbanking' ? 'rgba(0, 112, 243, 0.1)' : 'transparent', borderColor: formData.method === 'netbanking' ? '#38bdf8' : 'var(--border-primary)' }}>
+                  <input type="radio" name="method" value="netbanking" checked={formData.method === 'netbanking'} onChange={(e) => setFormData({ ...formData, method: e.target.value })} style={{ marginRight: 8 }} />
+                  🏦 Netbanking
+                </label>
+              </div>
             </div>
             <button
               type="submit"
